@@ -25,15 +25,18 @@ $app->get('/', function(Request $req, Response $res) {
 
 //-------------- Login ------------------
 $app->post('/login', function (Request $request, Response $response, $args) use ($app) {
-    $json =$request->getParams();
+    $json = $request->getParams();
     return $response->withJson($json);
 });
 
-$app->get('/{name}', function(Request $req, Response $res, $args) {
-    $name = $args['name'];
-    $res->getBody()->write("Hello, $name");
+//-------------- SignUP ------------------
+$app->get('/signup', function(Request $req, Response $res, $args) {
+    return $this->view->render($res, 'pages/signup.html');
+});
 
-    return $res;
+$app->post('/signup', function (Request $request, Response $response, $args) use ($app) {
+    $data = $request->getParams();
+    return $response->withJson($json);
 });
 
 $app->run();

@@ -1,12 +1,29 @@
 {% extends "index.html" %}
 {% block content %}
-    <section id='signup'>
-        <div class="container">
-            <form action="/signup" method='post'>
-                <div class="form-group">
-                    
-                </div>
-            </form>
-        </div>
-    </section>
+<section id='signup'>
+    <div class="container">
+        <h2 class='text-center'>Create your account</h2>
+        <form action="/signup" method='post'>
+            <div class="form-group">
+                <label for="username">Username<span>*</span></label>
+                <input type="text" name="username" id="username" placeholder="3 - 16 characters" minlength="3" maxlength="16" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email<span>*</span></label>
+                <input type="email" name="email" id="email" placeholder="example@mail.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password<span>*</span></label>
+                <input type="password" name="password" id="password" placeholder="8 - 32 characters" minlength="8" maxlength="32" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm password<span>*</span></label>
+                <input type="password" name="confirm-password" id="confirm-password" placeholder="8 - 32 characters" minlength="8" maxlength="32" required>
+            </div>
+            <div class="btn-group">
+                <button>Create account</button>
+            </div>
+        </form>
+    </div>
+</section>
 {% endblock %}

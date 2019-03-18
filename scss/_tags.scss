@@ -11,6 +11,12 @@ h1 {
     text-shadow: 2px 3px 2px silver;
 }
 
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
+
 strong {
     font-weight: bold;
 }
@@ -20,10 +26,15 @@ main {
     display: flex;
     background: url('../assets/background/bg.jpg') no-repeat 50% 50%;
     background-size: cover;
-    background-position: fixed;
-    min-height: calc(100vh - #{$headerHeight} - #{$footerHeight});
+    min-height: calc(100vh - #{$headerHeightMobile} - #{$footerHeight});
     width: 100%;
 }
+@media only screen and (min-width: 520px) {
+    main {
+        min-height: calc(100vh - #{$headerHeight} - #{$footerHeight});
+    }
+}
+
 
 footer {
     display: flex;
