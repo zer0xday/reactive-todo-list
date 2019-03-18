@@ -1,0 +1,139 @@
+@import 'reset';
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import 'variables';
+@import 'tags';
+
+* {
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    background: $primaryColor;
+    height: auto;
+    padding: 10px;
+
+    nav {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+        padding: 5px;
+
+        span {
+            margin: 0 auto;
+            font-size: 1.8em;
+        }
+
+        .logo {
+            display: flex;
+            flex-basis: 100%;
+            span {
+                align-self: center;
+            }
+        }
+    }
+}
+
+section {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+
+    &#landing-page {
+        display: flex;
+        height: inherit;
+        align-items: center;
+        justify-content: center;
+        flex-basis: 100%;
+
+        h1 > span {
+            color: $primaryColor;
+            text-shadow: 2px 3px 5px $secondaryColor;
+        }
+
+        .btn-group {
+            margin: 35px 0;
+        }
+
+        .btn-group > a{
+            text-decoration: none;
+        }
+    }
+}
+
+footer {
+    span {
+        color: white;
+    }
+
+    a {
+        text-decoration: underline;
+        color: $primaryColor;
+    }
+}
+
+@media only screen and (min-width: 520px) {
+    header {
+        height: $headerHeight;
+        nav {
+            flex: 1;
+            justify-content: space-around;
+
+            .logo {
+                flex-basis: auto;
+            }
+        }
+    }
+}
+
+// common classess
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 0;
+
+    input {
+        max-width: 250px;
+        width: 100%;
+        font-size: 14px;
+        padding: 7px 10px;
+        font-family: $montserrat;
+        border: none;
+        box-shadow: 2px 3px 10px black;
+    }
+
+    label {
+        flex-basis: 100%;
+        font-weight: bold;
+        font-size: 14px;
+        padding: 3px;
+    }
+}
+
+.btn-group {
+    margin: 7px 0;
+    text-align: center;
+    button,
+    a {
+        background: black;
+        font-size: 18px;
+        font-family: $montserrat;
+        color: white;
+        border: none;
+        box-shadow: 2px 3px 10px black;
+        padding: 10px 25px;
+        cursor: pointer;
+        transition: .25s;
+
+        &:hover {
+            background: white;
+            color: black;
+        }
+    }
+}
+
+

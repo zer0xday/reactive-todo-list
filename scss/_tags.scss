@@ -1,0 +1,36 @@
+body {
+    font-family: $montserrat;
+    font-size: 14px;
+}
+// simple tags
+h1 {
+    font-weight: bold;
+    font-size: 48px;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 2px 3px 2px silver;
+}
+
+strong {
+    font-weight: bold;
+}
+
+// divs
+main {
+    display: flex;
+    background: url('../assets/background/bg.jpg') no-repeat 50% 50%;
+    background-size: cover;
+    background-position: fixed;
+    min-height: calc(100vh - #{$headerHeight} - #{$footerHeight});
+    width: 100%;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    flex-basis: 100%;
+    align-items: center;
+    background: black;
+    text-align: center;
+    height: $footerHeight;
+}
