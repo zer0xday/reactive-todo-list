@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import 'variables';
 @import 'tags';
+@import 'keyframes';
 
 * {
     box-sizing: border-box;
@@ -73,20 +74,27 @@ section {
     &#signup {
         .container {
             display: flex;
-            background: rgba(0,0,0, .75);
-            padding: 25px;
             flex-wrap: wrap;
             align-content: flex-start;
             justify-content: center;
             box-shadow: 2px 3px 5px black;
+            background: rgba(0,0,0, .5);
         }
 
         .form-group {
             display: flex;
             justify-content: center;
+            padding: 15px 0;
+        }
+
+        .form-wrapper {
+            background: rgba(0,0,0, .75);
+            padding: 25px;
+            box-shadow: 2px 3px 5px black;
         }
 
         form {
+            max-width: 300px;
             .btn-group {
                 margin-top: 15px;
             }
@@ -131,12 +139,24 @@ footer {
             }
         }
     }
+
+    section {
+        &#signup > .container {
+            padding: 25px;
+        }
+    }
+}
+
+span.form-error {
+    color: red;
 }
 
 // common classess
 .form-group {
     display: flex;
     flex-wrap: wrap;
+    justify-items: center;
+    width: 100%;
     padding: 5px 0;
 
     input {
@@ -155,11 +175,24 @@ footer {
         margin: 3px 0;
         padding: 3px;
     }
+
+    .error-message {
+        // padding: 10px 3px;
+        display: flex;
+        flex-basis: 100%;
+        justify-content: center;
+        max-width: 90%;
+        text-align: center;
+
+        span {
+            padding-top: 7px;
+        }
+    }
 }
 
 .btn-group {
     margin: 7px 0;
-    text-align: center;
+
     button,
     a {
         background: black;

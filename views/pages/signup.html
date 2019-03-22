@@ -2,28 +2,56 @@
 {% block content %}
 <section id='signup'>
     <div class="container">
-        <h2 class='text-center'>Create your account</h2>
-        <form action="/signup" method='post'>
-            <div class="form-group">
-                <label for="username">Username<span>*</span></label>
-                <input type="text" name="username" id="username" placeholder="3 - 16 characters" minlength="3" maxlength="16" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email<span>*</span></label>
-                <input type="email" name="email" id="email" placeholder="example@mail.com" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password<span>*</span></label>
-                <input type="password" name="password" id="password" placeholder="8 - 32 characters" minlength="8" maxlength="32" required>
-            </div>
-            <div class="form-group">
-                <label for="confirm-password">Confirm password<span>*</span></label>
-                <input type="password" name="confirm-password" id="confirm-password" placeholder="8 - 32 characters" minlength="8" maxlength="32" required>
-            </div>
-            <div class="btn-group">
-                <button>Create account</button>
-            </div>
-        </form>
+        <div class="form-wrapper">
+            <h2 class='text-center'>Create your account</h2>
+            <form action="/signup" method='post' autocomplete="off">
+                <div class="form-group {{ errors.name ? 'has-error' : '' }}">
+                    <label for="name">Name<span>*</span></label>
+                    <input type="text" name="name" id="name" placeholder="Your name" value='{{ old.name }}' minlength="3" autocomplete='off' requireddd>
+                    <div class="error-message">
+                        <span class='form-error'>{{ errors.name ? errors.name | first : '' }}</span>
+                    </div>
+                </div>
+                <div class="form-group {{ errors.surname ? 'has-error' : '' }}">
+                    <label for="surname">Surname<span>*</span></label>
+                    <input type="text" name="surname" id="surname" placeholder="Your surname" minlength="2" maxlength="16" autocomplete='off' requireddd>
+                    <div class="error-message">
+                        <span class='form-error'>{{ errors.surname ? errors.surname| first : '' }}</span>
+                    </div>
+                </div>
+                <div class="form-group {{ errors.username ? 'has-error' : '' }}">
+                    <label for="username">Username<span>*</span></label>
+                    <input type="text" name="username" id="username" placeholder="3 - 16 characters" minlength="3" maxlength="16" autocomplete='off' requireddd>
+                    <div class="error-message">
+                        <span class='form-error'>{{ errors.username ? errors.username | first : '' }}</span>
+                    </div>
+                </div>
+                <div class="form-group {{ errors.email ? 'has-error' : '' }}">
+                    <label for="email">Email<span>*</span></label>
+                    <input type="email" name="email" id="email" placeholder="example@mail.com" autocomplete='off' requireddd>
+                    <div class="error-message">
+                        <span class='form-error'>{{ errors.email ? errors.email | first : '' }}</span>
+                    </div>
+                </div>
+                <div class="form-group {{ errors.password ? 'has-error' : '' }}">
+                    <label for="password">Password<span>*</span></label>
+                    <input type="password" name="password" id="password" placeholder="8 - 32 characters" minlength="8" maxlength="32" autocomplete='off' requireddd>
+                    <div class="error-message">
+                        <span class='form-error'>{{ errors.password ? errors.password | first : '' }}</span>
+                    </div>
+                </div>
+                <div class="form-group {{ errors.confirm_password ? 'has-error' : '' }}">
+                    <label for="confirm-password">Confirm password<span>*</span></label>
+                    <input type="password" name="confirm_password" id="confirm-password" placeholder="8 - 32 characters" minlength="8" maxlength="32" autocomplete='off' requireddd>
+                    <div class="error-message">
+                        <span class='form-error'>{{ errors.confirm_password ? errors.confirm_password | first : '' }}</span>
+                    </div>
+                </div>
+                <div class="btn-group text-center">
+                    <button>Create account</button>
+                </div>
+            </form>
+        </div>
     </div>
 </section>
 {% endblock %}

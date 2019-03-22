@@ -23,11 +23,11 @@ strong {
 
 // divs
 main {
+    width: 100%;
+    min-height: calc(100vh - #{$headerHeightMobile} - #{$footerHeight});
     display: flex;
     background: url('../assets/background/bg.jpg') no-repeat 50% 50%;
     background-size: cover;
-    min-height: calc(100vh - #{$headerHeightMobile} - #{$footerHeight});
-    width: 100%;
 }
 @media only screen and (min-width: 520px) {
     main {

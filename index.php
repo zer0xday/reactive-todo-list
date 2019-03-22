@@ -1,42 +1,37 @@
 <?php
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
+session_start();
 
 require 'vendor/autoload.php';
-require 'config.php';
+require 'app/config.php';
 
-$app = new Slim\App(['settings' => $config]);
+// initialize app
+$app = new Slim\App([
+    'settings' => [
+        'displayErrorDetails' => true,
+        'db' => $db
+    ]
+
+]);
+// init containers
 $container = $app->getContainer();
+require 'app/containers.php';
 
-// set twig to view renderer engine
-$container['view'] = function($container) {
-    $view = new \Slim\Views\Twig('views');
+require 'app/middlewares.php';
+// init capsule for eloquent
+use Illuminate\Database\Capsule\Manager as Capsule;
+$capsule = new Capsule;
+$capsule->addConnection($container['settings']['db']);
 
-    $router = $container->get('router');
-    $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
-    $view->addExtension(new Slim\Views\TwigExtension($router, $uri));
-
-    return $view;
+// Make this Capsule instance available globally via static methods
+$capsule->setAsGlobal();
+// init eloquent
+$capsule->bootEloquent();
+$container['db'] = function($container) use ($capsule) {
+    return $capsule;
 };
 
-$app->get('/', function(Request $req, Response $res) {
-    return $this->view->render($res, 'pages/home.html');
-});
+// init app routes
+require 'app/routes.php';
 
-//-------------- Login ------------------
-$app->post('/login', function (Request $request, Response $response, $args) use ($app) {
-    $json = $request->getParams();
-    return $response->withJson($json);
-});
-
-//-------------- SignUP ------------------
-$app->get('/signup', function(Request $req, Response $res, $args) {
-    return $this->view->render($res, 'pages/signup.html');
-});
-
-$app->post('/signup', function (Request $request, Response $response, $args) use ($app) {
-    $data = $request->getParams();
-    return $response->withJson($json);
-});
-
+// run app
 $app->run();
