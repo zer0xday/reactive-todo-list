@@ -15,6 +15,7 @@ header {
     background: $primaryColor;
     height: $headerHeightMobile;
     padding: 10px;
+    transition: .25s;
 
     nav {
         display: flex;

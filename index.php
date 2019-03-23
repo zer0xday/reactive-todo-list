@@ -30,6 +30,8 @@ $container['db'] = function($container) use ($capsule) {
     return $capsule;
 };
 
+// app extensions
+$app->add($container->csrf);
 // init app routes
 require 'app/routes.php';
 

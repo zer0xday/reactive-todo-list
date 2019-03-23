@@ -23,8 +23,15 @@ $container['validator'] = function() {
     return new App\Validation\Validator;
 };
 
+$container['auth'] = function($c) {
+    return new App\Auth\Auth;
+};
+
 // Define controllers here
 $container['AppController'] = function($c) {
     return new App\Controllers\AppController($c);
+};
+$container['AuthController'] = function($c) {
+    return new App\Controllers\AuthController($c);
 };
 

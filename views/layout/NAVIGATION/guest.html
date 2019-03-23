@@ -1,0 +1,25 @@
+<div class="logo">
+    <a href='{{ path_for('home') }}' title='Return to home'>TODOList</a>
+</div>
+<div class="login">
+    <form action="/login" method='post'>
+        <div class="form-group {{ errors.username ? 'has-error' : '' }}">
+            <label for="">Username</label>
+            <input type="text" name='username' placeholder='Your username' title='Type in your username'>
+            <div class="error-message">
+                <span class='form-error'>{{ errors.username ? errors.username | first : '' }}</span>
+            </div>
+        </div>
+        <div class="form-group {{ errors.password ? 'has-error' : '' }}">
+            <label for="password">Password</label>
+            <input type="password" name='password' placeholder='Your password' title='Type in your password'>
+            <div class="error-message">
+                <span class='form-error'>{{ errors.password ? errors.password | first : '' }}</span>
+            </div>
+        </div>
+        {{ csrf.fields | raw }}
+        <div class="btn-group">
+            <button title='Log into application'>Login</button>
+        </div>
+    </form>
+</div>

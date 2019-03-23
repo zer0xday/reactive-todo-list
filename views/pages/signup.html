@@ -47,7 +47,9 @@
                         <span class='form-error'>{{ errors.confirm_password ? errors.confirm_password | first : '' }}</span>
                     </div>
                 </div>
-                {% include '/components/CSRF-fields.html' %}
+
+                {{ csrf.fields | raw }}
+
                 <div class="btn-group text-center">
                     <button>Create account</button>
                 </div>

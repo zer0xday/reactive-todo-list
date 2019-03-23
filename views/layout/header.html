@@ -1,22 +1,9 @@
 <header>
     <nav>
-        <div class="logo">
-            <a href='/' title='Return to home'>TODOList</a>
-        </div>
-        <div class="login">
-            <form action="/login" method='post'>
-                <div class="form-group">
-                    <label for="">Username</label>
-                    <input type="text" name='username' placeholder='Your username' title='Type in your username'>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name='password' placeholder='Your password' title='Type in your password'>
-                </div>
-                <div class="btn-group">
-                    <button title='Log into application'>Login</button>
-                </div>
-            </form>
-        </div>
+        {% if user is defined %}
+            {% include 'layout/NAVIGATION/user.html' %}
+        {% else %}
+            {% include 'layout/NAVIGATION/guest.html' %}
+        {% endif %}
     </nav>
 </header>

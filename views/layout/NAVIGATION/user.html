@@ -1,0 +1,11 @@
+<div class="logo">
+    <a href='{{ path_for('main') }}' title='Return to home'>TODOList</a>
+</div>
+<div class="login">
+    <form action="/logout" method='post'>
+        {{ csrf.fields | raw }}
+        <div class="form-group">
+            <button>LOGOUT</button>
+        </div>
+    </form>
+</div>
