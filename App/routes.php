@@ -9,6 +9,9 @@ $app->post('/login', function (Request $request, Response $response, $args) use 
 });
 
 //-------------- SignUP ------------------
-$app->get('/signup', 'AppController:signUp')->setName('signUp');
+$app->get('/signup', 'AppController:signUp')
+    ->setName('signUp');
 
-$app->post('/signup', 'AppController:createAccount')->setName('createAccount');
+$app->post('/signup', 'AppController:createAccount')
+    ->setName('createAccount')
+    ->add($container->csrf);
