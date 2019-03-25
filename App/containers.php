@@ -24,7 +24,7 @@ $container['validator'] = function() {
 };
 
 $container['auth'] = function($c) {
-    return new App\Auth\Auth;
+    return new App\Auth\Auth($c);
 };
 
 // Define controllers here

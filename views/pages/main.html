@@ -1,8 +1,59 @@
 {% extends "index.html" %}
 {% block content %}
 <section id="main-block">
-    <div id="todoList">
-        TODOLIST
+    <div class="list-buttons">
+        <div class="user-ui-btn text-center">
+            <button class='ui-btn' id='newList'>&#10010;</button>
+        </div>
+    </div>
+    <div class="lists-container">
+        <div class="todoList" data-list-name='First List' data-list-id='0'>
+            <div class="list-header">
+                <div class="list-btn-group">
+                    <button type="button" id='editList'>&#9998;</button>
+                </div>
+                <div class="list-title">
+                    <input type="text" class='list-title-field' value='Example title' readonly>
+                </div>
+                <div class="list-btn-group">
+                    <button id='removeList'>&#10006;</button>
+                </div>
+            </div>
+            <div class="list-body">
+                <ul class='tasks'>
+                    <li class='single-task' id='1'>
+                        <div class="content">
+                            <p>
+                                Dupa dupa dupa dupa
+                            </p>
+                        </div>
+                        <div class="task-actions">
+                            <button type="button" class='task-action done'>&#10004;</button>
+                            <button type="button" class='task-action delete'>&#10006;</button>
+                        </div>
+                    </li>
+                    <li class='single-task' id='2'>
+                        <div class="content">
+                            <p>
+                                DupaDupaDupaDupaDupaDupaDupaDupaDupaDupaDupaDupaDupaDupaDupaDupaDupaDupa
+                            </p>
+                        </div>
+                        <div class="task-actions">
+                            <button type="button" class='task-action done'>&#10004;</button>
+                            <button type="button" class='task-action delete'>&#10006;</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="list-new-task">
+                <form action="" method='post'>
+                    <input type="text" name="new_task" id="newTask">
+                    <div id="createTask">
+                        <button type="button">&#10148;</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}

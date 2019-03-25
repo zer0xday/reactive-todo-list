@@ -5,6 +5,12 @@ namespace App\Auth;
 use App\Models\User;
 
 class Auth {
+    protected $container;
+
+    public function __construct($container) {
+        $this->container = $container;
+    }
+
     public function loginAttempt($username, $password) {
         $user = User::where('username', $username)->first();
 

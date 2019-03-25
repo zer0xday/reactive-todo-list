@@ -1,11 +1,23 @@
 <div class="logo">
-    <a href='{{ path_for('main') }}' title='Return to home'>TODOList</a>
+    <div class="bio">
+        <div class="names">
+            <div class="name-part" id='name'>
+                <span>{{ user.name }}</span>
+            </div>
+            <div class="name-part" id='surname'>
+                <span>{{ user.surname }}</span>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="login">
+<div class="user-ui">
+    <div class="user-ui-btn text-center">
+        <a id='settings-btn' class='ui-btn' title='settings'>&#9881;</a>
+    </div>
     <form action="/logout" method='post'>
         {{ csrf.fields | raw }}
-        <div class="form-group">
-            <button>LOGOUT</button>
+        <div class="user-ui-btn text-center">
+            <button id='logout-btn' class='ui-btn' title='Logout'>&#10162;</button>
         </div>
     </form>
 </div>

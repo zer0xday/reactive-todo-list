@@ -8,6 +8,25 @@
     box-sizing: border-box;
 }
 
+.user-ui-btn {
+    margin: 15px 0;
+}
+
+.ui-btn {
+    background:whitesmoke;
+    font-size: 36px;
+    padding: 2px 12px;
+    border-radius: 50%;
+    border: 2px outset silver;
+    cursor: pointer;
+    transition: .25s;
+
+    &:hover {
+        transform: scale(.97);
+        border: 2px inset orange;
+    }
+}
+
 header {
     display: flex;
     justify-content: flex-end;
@@ -26,30 +45,239 @@ header {
 
         .logo {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
             flex-basis: 100%;
 
             a {
+                flex-basis: 100%;
+                text-align: center;
                 align-self: center;
                 margin: 0 auto;
                 font-size: 1.8em;
                 transition: .25s;
 
                 &:hover {
-                    will-change: transform, color, font-weight;
                     transform: scale(1.25);
                     color: white;
                     font-weight: bold;
                 }
             }
         }
+
+        .names {
+            text-align: center;
+        }
+
+        #name {
+            padding: 10px;
+            font-size: 2.5em;
+            color: white;
+            text-shadow: 1px 2px 2px black;
+        }
+
+        #surname {
+            padding: 3px;
+            font-size: 2em;
+            color: black;
+        }
+
+        #newList {
+            background: #66ff99;
+            border: none;
+
+            &:hover {
+                color: white;
+            }
+        }
+
+        #logout-btn {
+            color: red;
+        }
     }
 }
 
 section {
     display: flex;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     padding: 10px;
+
+    &#main-block {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: flex-start;
+        width: 100%;
+        height: 100%;
+
+        .list-buttons {
+            flex-basis: 100%;
+        }
+
+        .lists-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 30px;
+        }
+
+        .todoList {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            background: rgba(0,0,0,.85);
+            box-shadow: 2px 3px 5px black;
+            color: white;
+            flex-basis: 100%;
+            max-width: 450px;
+
+            &:first-child {
+                visibility: hidden;
+                display: none;
+            }
+            * {
+                flex-basis: 100%;
+            }
+
+            .list-header {
+                display: flex;
+                flex-wrap: wrap;
+                text-align: center;
+                border-bottom: 2px solid $primaryColor;
+                padding: 10px;
+
+                .list-title {
+                    flex: 1;
+                }
+
+                .list-title-field {
+                    text-align: center;
+                    font-size: 24px;
+                    color: white;
+                    background: none;
+                    border: none;
+                    transition: .25s;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                .list-btn-group {
+                    flex-wrap: wrap;
+                    flex: 1;
+                    button {
+                        text-align: center;
+                        background: none;
+                        font-size: 20px;
+                        border: none;
+                        cursor: pointer;
+                        transition: .25s;
+                    }
+
+                    #editList {
+                        color: #66ff99;
+                    }
+
+                    #removeList {
+                        color: red;
+                    }
+
+                    button:hover {
+                        transform: scale(1.25);
+                    }
+                }
+            }
+
+            .list-body {
+                display: flex;
+                flex-wrap: wrap;
+                min-height: auto;
+                padding: 20px 10px;
+
+                ul.tasks {
+                    line-height: 20px;
+                    padding: 0 15px;
+                    list-style-type: decimal;
+                    li {
+                        display: flex;
+                        flex-wrap: wrap;
+                        flex-basis: 100%;
+                        padding: 5px 0;
+                    }
+
+                    li > .content {
+                        flex: 4;
+                        overflow-wrap: break-word;
+
+                        p {
+                            max-width: 250px;
+                        }
+                    }
+
+                    .task-actions {
+                        display: flex;
+                        justify-items: center;
+                        align-items: center;
+                        flex: 1;
+                    }
+
+                    .task-actions > button {
+                        background: none;
+                        border: none;
+                        color: white;
+                        cursor: pointer;
+                    }
+
+                }
+
+            }
+
+            .list-new-task > form {
+                display: flex;
+                padding: 10px;
+                border-top: .5px groove silver;
+                flex-basis: 100%;
+                justify-content: flex-end;
+
+                input {
+                    padding: 12px 40px 8px 5px;
+                    font-size: 16px;
+                    flex-basis: 100%;
+                    color: white;
+                    border: none;
+                    border-bottom: 2px groove $primaryColor;
+                    background: none;
+                    transition: .25s;
+
+                    &:focus {
+                        outline: none;
+                        border-bottom: 2px groove white;
+                    }
+                }
+
+                #createTask {
+                    display: flex;
+                    flex-basis: 100%;
+                    position: absolute;
+
+                    button {
+                        background: none;
+                        color: $primaryColor;
+                        font-size: 28px;
+                        border: none;
+                        cursor: pointer;
+                        transition: .25s;
+
+                        &:hover {
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     &#landing-page {
         display: flex;
@@ -216,5 +444,3 @@ span.form-error {
 .text-center {
     text-align: center;
 }
-
-

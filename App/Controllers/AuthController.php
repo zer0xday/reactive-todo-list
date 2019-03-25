@@ -15,14 +15,18 @@ class AuthController extends Controller {
                 ->notEmpty(),
         ]);
 
-        return $validator
-            ? $res->withRedirect($this->router->pathFor('home'))
-            : null;
+        if(!$validator) {
+            $res->withRedirect($this->router->pathFor('home'));
+        }
 
         $user = $this->auth->loginAttempt(
             $req->getParam('username'),
             $req->getParam('password')
         );
+
+        if(!$user) {
+            $this->view->getEnvironment()->addGlobal('doesNotExist', 'User does not exist');
+        }
 
         return $user
             ? $res->withRedirect($this->router->pathFor('main'))
