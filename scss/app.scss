@@ -83,15 +83,6 @@ header {
             color: black;
         }
 
-        #newList {
-            background: #66ff99;
-            border: none;
-
-            &:hover {
-                color: white;
-            }
-        }
-
         #logout-btn {
             color: red;
         }
@@ -114,11 +105,21 @@ section {
 
         .list-buttons {
             flex-basis: 100%;
+            padding: 0 0 25px 0;
+        }
+
+        #newList {
+            background: #72ff70;
+
+            &:hover {
+                color: white;
+            }
         }
 
         .lists-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: auto;
             grid-gap: 30px;
         }
 
@@ -130,9 +131,9 @@ section {
             box-shadow: 2px 3px 5px black;
             color: white;
             flex-basis: 100%;
-            max-width: 450px;
+            max-width: 800px;
 
-            &:first-child {
+            &:last-child {
                 visibility: hidden;
                 display: none;
             }
@@ -148,7 +149,7 @@ section {
                 padding: 10px;
 
                 .list-title {
-                    flex: 1;
+                    flex: 8;
                 }
 
                 .list-title-field {
@@ -156,6 +157,7 @@ section {
                     font-size: 24px;
                     color: white;
                     background: none;
+                    width: 100%;
                     border: none;
                     transition: .25s;
 
@@ -176,7 +178,7 @@ section {
                         transition: .25s;
                     }
 
-                    #editList {
+                    #editListTitle {
                         color: #66ff99;
                     }
 
@@ -196,10 +198,19 @@ section {
                 min-height: auto;
                 padding: 20px 10px;
 
+                .status {
+                    flex: 1;
+                    text-align: center;
+
+                    small {
+                        font-size: .8em;
+                    }
+                }
+
                 ul.tasks {
                     line-height: 20px;
                     padding: 0 15px;
-                    list-style-type: decimal;
+
                     li {
                         display: flex;
                         flex-wrap: wrap;
@@ -208,7 +219,7 @@ section {
                     }
 
                     li > .content {
-                        flex: 4;
+                        flex: 8;
                         overflow-wrap: break-word;
 
                         p {
@@ -223,10 +234,16 @@ section {
                         flex: 1;
                     }
 
+                    .task-action#done {
+                        color: #72ff70;
+                    }
+                    .task-action#delete {
+                        color: red;
+                    }
+
                     .task-actions > button {
                         background: none;
                         border: none;
-                        color: white;
                         cursor: pointer;
                     }
 
@@ -237,6 +254,7 @@ section {
             .list-new-task > form {
                 display: flex;
                 padding: 10px;
+                height: 75px;
                 border-top: .5px groove silver;
                 flex-basis: 100%;
                 justify-content: flex-end;

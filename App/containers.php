@@ -34,4 +34,7 @@ $container['AppController'] = function($c) {
 $container['AuthController'] = function($c) {
     return new App\Controllers\AuthController($c);
 };
+$container['todoAPI'] = function($c) {
+    return new App\Controllers\todoAPI($c);
+};
 

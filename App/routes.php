@@ -19,3 +19,12 @@ $app->post('/signup', 'AuthController:createAccount')
 $app->get('/main', 'AppController:main')
     ->setName('main')
     ->add(new \App\Middleware\AuthMiddleware($container));
+
+// list API
+$app->post('/list/create', 'todoAPI:createList')
+    ->add(new \App\Middleware\AuthMiddleware($container));
+$app->post('/list/delete/:id', 'todoAPI:deleteList')
+    ->add(new \App\Middleware\AuthMiddleware($container));
+
+$app->post('/task/create', 'todoAPI:taskCreate')
+    ->add(new \App\Middleware\AuthMiddleware($container));
