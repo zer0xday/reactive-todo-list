@@ -22,14 +22,9 @@ class AppController extends Controller {
         return $this->view->render($res, 'pages/signup.html');
     }
 
-    public function createList($req, $res) {
-        $user = new TODOList;
+    public function account($req, $res) {
+        $user = User::find($_SESSION['user']);
 
-        $user->title = 'Example title';
-        $user->status_id = 1;
-
-        $user->save();
-
-        return $res->withJson(array('id' => $user->id));
+        return $this->view->render($res, 'pages/account.html', ['user' => $user]);
     }
 };

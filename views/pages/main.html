@@ -3,10 +3,7 @@
 <section id="main-block">
     <div class="list-buttons">
         <div class="user-ui-btn text-center">
-            <form action="javascript:void(0)" method="post" id='createNewTODOList'>
-                {{ csrf.fields | raw }}
-                <button class='ui-btn' id='newList'>&#10010;</button>
-            </form>
+            <button class='ui-btn' id='newList'>&#10010;</button>
         </div>
     </div>
     <div class="lists-container">
@@ -15,9 +12,10 @@
             <div class="list-header">
                 <div class="list-btn-group">
                     <button type="button" id='editListTitle'>&#9998;</button>
+                    <button type="button" id='saveListTitle'>&#10004;</button>
                 </div>
                 <div class="list-title">
-                    <input type="text" class='list-title-field' value='{{ list.title }}' readonly>
+                    <input type="text" maxlength="30" class='list-title-field' value='{{ list.title }}' readonly>
                 </div>
                 <div class="list-btn-group">
                     <button id='removeList'>&#10006;</button>
@@ -39,6 +37,7 @@
                         </div>
                         <div class="task-actions">
                             <button type="button" class='task-action' id='done'>&#10004;</button>
+                            <button type="button" class='task-action' id='halfDone'>&#189;</button>
                             <button type="button" class='task-action' id='delete'>&#10006;</button>
                         </div>
                     </li>
@@ -47,7 +46,7 @@
             </div>
             <div class="list-new-task">
                 <form action="javascript:void(0)" method='post'>
-                    <input type="text" name="new_task" placeholder="Describe new task here" id="newTask">
+                    <input type="text" name="new_task" placeholder="Describe new task here" id="newTask" autocomplete="off">
                     <div id="createTask">
                         <button type="button">&#10148;</button>
                     </div>
@@ -57,6 +56,15 @@
         {% endfor %}
 
         {% include 'components/TODOlist-template.html' %}
+    </div>
+    <div class="modal">
+        <div class="popup drop">
+            <p id='popup-notify' class='content'></p>
+            <div class="btn-group">
+                <button type="button" class='modal-btn' id='accept'>Yes</button>
+                <button type="button" class='modal-btn' id='reject'>No</button>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}

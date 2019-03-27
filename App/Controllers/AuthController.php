@@ -70,6 +70,58 @@ class AuthController extends Controller {
         return $res->withRedirect($this->router->pathFor('home'));
     }
 
+    public function editAccount($req, $res) {
+        $validatorRules = [
+            'name' => v::noWhitespace()
+                ->notEmpty()
+                ->alpha(),
+            'surname' => v::noWhitespace()
+                ->notEmpty()
+                ->alpha(),
+            'username' => v::noWhitespace()
+                ->notEmpty()
+                ->alnum(),
+            'email' => v::noWhitespace()
+                ->notEmpty()
+                ->email(),
+
+        ];
+        $user = User::find($_SESSION['user']);
+        $oldPass = $req->getParam('old_password');
+
+        if($oldPass !== '') {
+            $passwordCheck = $this->validator->validatePassword($req, $req->getParam('old_password'), $user->password_hash);
+            if($passwordCheck) {
+                $validatorRules +=  [
+                    'old_password' => v::noWhiteSpace()->notEmpty(),
+                    'password' => v::noWhitespace()->notEmpty(),
+                    'confirm_password' => v::noWhitespace()->equals($req->getParam('password'))->notEmpty()
+                ];
+                $newPasswordHash = password_hash($req->getParam('confirm_password'), PASSWORD_DEFAULT);
+            } else {
+                return $res->withRedirect($this->router->pathFor('account'));
+            }
+        }
+
+        $validator = $this->validator->validate($req, $validatorRules);
+
+        if(!$validator) {
+            return $res->withRedirect($this->router->pathFor('account'));
+        }
+
+        $user->name = $req->getParam('name');
+        $user->surname = $req->getParam('surname');
+        $user->username = $req->getParam('username');
+        $user->email = $req->getParam('email');
+        if(isset($newPasswordHash)) {
+            $user->password_hash = $newPasswordHash;
+        }
+
+        $user->save();
+
+        return $res->withRedirect($this->router->pathFor('main'));
+    }
+
     public function logout($req, $res) {
         $logout = $this->auth->logout();
         return $res->withRedirect($this->router->pathFor('home'));

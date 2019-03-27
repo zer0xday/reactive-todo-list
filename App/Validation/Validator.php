@@ -19,4 +19,15 @@ class Validator {
         $_SESSION['errors'] = $this->messages;
         return empty($this->messages) ? true : false;
     }
+
+    public function validatePassword($req, $passwordString, $passwordHash) {
+        $password = password_verify($passwordString, $passwordHash);
+
+        if(!$password) {
+            $this->messages['old_password'] = "Incorrect password";
+        }
+
+        $_SESSION['errors'] = $this->messages;
+        return empty($this->messages) ? true : false;
+    }
 }

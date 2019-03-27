@@ -161,7 +161,13 @@ section {
                     border: none;
                     transition: .25s;
 
+                    &:read-only:focus {
+                        outline: none;
+                        border: none;
+                    }
+
                     &:focus {
+                        border-bottom: 1px solid white;
                         outline: none;
                     }
                 }
@@ -180,6 +186,14 @@ section {
 
                     #editListTitle {
                         color: #66ff99;
+                    }
+
+                    #saveListTitle {
+                        display: none;
+                        color: #72ff70;
+                        &.show {
+                            display: inline-block;
+                        }
                     }
 
                     #removeList {
@@ -236,6 +250,9 @@ section {
 
                     .task-action#done {
                         color: #72ff70;
+                    }
+                    .task-action#halfDone {
+                        color: white;
                     }
                     .task-action#delete {
                         color: red;
@@ -455,6 +472,33 @@ span.form-error {
         &:hover {
             background: white;
             color: black;
+        }
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    color: white;
+    min-width: 250px;
+    min-height: 150px;
+
+    &.active {
+        display: flex;
+    }
+
+    .popup {
+        display: flex;
+        flex-basis: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        padding: 25px;
+        background: rgba(0,0,0,.9);
+        p {
+            padding: 25px;
+            text-align: center;
+            flex-basis: 100%;
         }
     }
 }

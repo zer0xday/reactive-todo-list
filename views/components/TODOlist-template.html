@@ -2,9 +2,10 @@
     <div class="list-header">
         <div class="list-btn-group">
             <button type="button" id='editListTitle'>&#9998;</button>
+            <button type="button" id='saveListTitle'>&#10004;</button>
         </div>
         <div class="list-title">
-            <input type="text" class='list-title-field' value='Example title' readonly>
+            <input type="text" maxlength="30" class='list-title-field' placeholder="max 30 characters" value='Example title' readonly>
         </div>
         <div class="list-btn-group">
             <button id='removeList'>&#10006;</button>
@@ -12,7 +13,7 @@
     </div>
     <div class="list-body">
         <ul class='tasks'>
-            <li class='single-task' id='1' data-task-id='1'>
+            <li class='single-task' id='1' data-task-id=''>
                 <div class="content">
                     <p>
                         Task example
@@ -23,6 +24,7 @@
                 </div>
                 <div class="task-actions">
                     <button type="button" class='task-action' id='done'>&#10004;</button>
+                    <button type="button" class='task-action' id='halfDone'>&#189;</button>
                     <button type="button" class='task-action' id='delete'>&#10006;</button>
                 </div>
             </li>
@@ -30,7 +32,7 @@
     </div>
     <div class="list-new-task">
         <form action="" method='post'>
-            <input type="text" name="new_task" id="newTask">
+            <input type="text" name="new_task" placeholder="Describe new task here" id="newTask" autocomplete="off">
             <div id="createTask">
                 <button type="button">&#10148;</button>
             </div>
