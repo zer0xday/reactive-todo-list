@@ -220,6 +220,13 @@ class App {
                     newTask.querySelector('.content>p').innerHTML = content;
 
                     tasks.appendChild(newTask);
+                    const remove = newTask.querySelector('button#delete');
+                    const halfDone = newTask.querySelector('button#halfDone');
+                    const done = newTask.querySelector('button#done');
+
+                    remove.addEventListener('click', () => this.deleteTask(newTask));
+                    halfDone.addEventListener('click', () => this.changeTaskStatus('halfDone', newTask));
+                    done.addEventListener('click', () => this.changeTaskStatus('done', newTask));
                 }
                 const { create } = this._api.task;
                 const { field } = this.NewTask;
