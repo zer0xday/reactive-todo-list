@@ -182,7 +182,7 @@ class App {
                 const changeStatus = (value, taskId) => {
                     const { task } = this._api;
                     let statusValue = taskElement.querySelector('.status>small');
-                    let contentValue = taskElement.querySelector('.content>p');
+                    let taskValue = taskElement.querySelector('.content>p');
                     const formData = new FormData;
                     formData.append('status_id', value);
 
@@ -194,8 +194,8 @@ class App {
                     .then(res => {
                         statusValue.innerHTML = res.status_name;
                         res.status_name === 'Done'
-                            ? contentValue.innerHTML = `<s>${res.task_value}</s>`
-                            : contentValue.innerHTML = res.task_value;
+                            ? taskValue.innerHTML = `<s>${res.task_value}</s>`
+                            : taskValue.innerHTML = res.task_value;
                     })
                     .catch(err => console.error(err))
                 };
