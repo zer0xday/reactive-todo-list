@@ -7,7 +7,11 @@ use \Slim\Views\Twig as View;
 
 class AppController extends Controller {
     public function index($req, $res) {
-        return $this->view->render($res, 'pages/home.html');
+        if(!isset($_SESSION['user'])) {
+            return $this->view->render($res, 'pages/home.html');
+        } else {
+            return $this->main($req, $res);
+        }
     }
 
     public function main($req, $res) {

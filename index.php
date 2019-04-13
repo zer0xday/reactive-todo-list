@@ -16,6 +16,7 @@ $app = new Slim\App([
 $container = $app->getContainer();
 require 'app/containers.php';
 
+// init middlewares
 require 'app/middlewares.php';
 // init capsule for eloquent
 use Illuminate\Database\Capsule\Manager as Capsule;
@@ -31,8 +32,9 @@ $container['db'] = function($container) use ($capsule) {
 };
 
 // app extensions
+/* CSRF PROTECTION Turned off */
 // $app->add($container->csrf);
-// init app routes
+// init application routes
 require 'app/routes.php';
 
 // run app

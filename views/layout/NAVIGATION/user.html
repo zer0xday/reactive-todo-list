@@ -1,15 +1,15 @@
 <div class="logo">
-    <div class="bio">
-        <div class="names">
-            <div class="name-part" id='name'>
-                <span>{{ user.name }}</span>
-            </div>
-            <div class="name-part" id='surname'>
-                <span>{{ user.surname }}</span>
-            </div>
+    <a href='{{ path_for('main') }}' title='Return to home'>TODOList</a>
+</div>
+<div class="bio">
+    <div class="names">
+        <div class="name-part" id='name'>
+            <span>{{ user.name }}</span>
+        </div>
+        <div class="name-part" id='surname'>
+            <span>{{ user.surname }}</span>
         </div>
     </div>
-    <a href='{{ path_for('main') }}' title='Return to home'>TODOList</a>
 </div>
 <div class="user-ui">
     <div class="user-ui-btn text-center">

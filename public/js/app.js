@@ -263,12 +263,13 @@ class App {
     }
 
     init() {
+        // if container exists
         if(this.container) {
-            // make new list
+            // create new list
             this.createList.addEventListener('click', (e) => {
                 this.setupNewList();
             });
-            // make created list reactive
+            // make created lists reactive
             // -1 in length bcuz last element is template
             if(this.container.children.length > 1) {
                 for (let i = 0; i < this.container.children.length - 1; i++) {
