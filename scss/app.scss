@@ -104,10 +104,12 @@ section {
         }
 
         #newList {
-            background: #72ff70;
+            background: rgba(0, 0, 0, .75);
+            color: orange;
 
             &:hover {
-                color: white;
+                background: rgba(0, 0, 0, 1);
+                transform: scale(1.1);
             }
         }
 
@@ -321,12 +323,41 @@ section {
         .task-action#done {
             color: #72ff70;
         }
+
         .task-action#halfDone {
             color: white;
         }
+
+        .task-action#priority {
+            color: orangered;
+        }
+
+        .task-action#query {
+            color: aquamarine;
+        }
+
         .task-action#delete {
             color: red;
         }
+    }
+}
+
+.content > p > span {
+    &.done {
+        text-decoration: line-through;
+        color: gray;
+    }
+
+    &.halfDone {
+        color: silver;
+    }
+
+    &.priority {
+        color: orangered;
+    }
+
+    &.query {
+        color: aquamarine;
     }
 }
 
@@ -363,12 +394,13 @@ section {
     button {
         background: none;
         color: $primaryColor;
-        font-size: 28px;
+        font-size: 36px;
         border: none;
         cursor: pointer;
         transition: .25s;
 
         &:hover {
+            transform: scale(1.1);
             color: white;
         }
     }

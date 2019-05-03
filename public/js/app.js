@@ -71,6 +71,8 @@ class App {
                     removeTask: targetEl.querySelectorAll('button.task-action#delete'),
                     doneTask: targetEl.querySelectorAll('button.task-action#done'),
                     halfDoneTask: targetEl.querySelectorAll('button.task-action#halfDone'),
+                    priorityTask: targetEl.querySelectorAll('button.task-action#priority'),
+                    queryTask: targetEl.querySelectorAll('button.task-action#query'),
                 },
                 status: {
                     done: targetEl.querySelector('button.task-action#done'),
@@ -99,7 +101,7 @@ class App {
                 });
 
                 // edit / delete task
-                const { removeTask, doneTask, halfDoneTask } = this.Body.buttons;
+                const { removeTask, doneTask, halfDoneTask, priorityTask, queryTask } = this.Body.buttons;
                 removeTask.forEach((el, index) => {
                     el.addEventListener('click', () => this.deleteTask(this.Body.tasks.children[index]));
                 });
@@ -108,6 +110,12 @@ class App {
                 });
                 halfDoneTask.forEach((el, index) => {
                     el.addEventListener('click', () => this.changeTaskStatus('halfDone', this.Body.tasks.children[index]));
+                });
+                priorityTask.forEach((el, index) => {
+                    el.addEventListener('click', () => this.changeTaskStatus('priority', this.Body.tasks.children[index]));
+                });
+                queryTask.forEach((el, index) => {
+                    el.addEventListener('click', () => this.changeTaskStatus('query', this.Body.tasks.children[index]));
                 });
                 // create task
                 const { createTask } = this.NewTask.buttons;
@@ -193,18 +201,44 @@ class App {
                     .then(res => res.json())
                     .then(res => {
                         statusValue.innerHTML = res.status_name;
-                        res.status_name === 'Done'
-                            ? taskValue.innerHTML = `<s>${res.task_value}</s>`
-                            : taskValue.innerHTML = res.task_value;
+                        let content = '';
+                        console.log(res.status_name);
+                        switch(res.status_name) {
+                            case 'Done':
+                                content = `<span class='done'>${res.task_value}</span>`;
+                                break;
+
+                            case 'Half done':
+                                content  = `<span class='halfDone'>${res.task_value}</span>`;
+                                break;
+
+                            case 'Priority':
+                                content  = `<span class='priority'>${res.task_value}</span>`;
+                                break;
+
+                            case 'Query':
+                                content  = `<span class='query'>${res.task_value}</span>`;
+                                break;
+
+                            default: break;
+                        };
+
+                        taskValue.innerHTML = content;
                     })
                     .catch(err => console.error(err))
                 };
                 switch(status) {
+                    case 'halfDone':
+                        return changeStatus(2, taskId);
+
                     case 'done':
                         return changeStatus(3, taskId);
 
-                    case 'halfDone':
-                        return changeStatus(2, taskId);
+                    case 'priority':
+                        return changeStatus(4, taskId);
+
+                    case 'query':
+                        return changeStatus(5, taskId);
 
                     default: break;
                 };

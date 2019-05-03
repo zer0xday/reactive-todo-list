@@ -24,23 +24,31 @@
             <div class="list-body">
                 <ul class='tasks'>
                     {% for task in list.tasks %}
-                    <li class='single-task' id='{{ loop.index }}' data-task-id='{{ task.id }}'>
-                        <div class="content">
-                            {% if task.status.name == 'Done' %}
-                                <p><s>{{ task.task }}</s></p>
-                            {% else %}
-                                <p>{{ task.task }}</p>
-                            {% endif %}
-                        </div>
-                        <div class="status">
-                            <small>{{ task.status.name }}</small>
-                        </div>
-                        <div class="task-actions">
-                            <button type="button" class='task-action' id='done'>&#10004;</button>
-                            <button type="button" class='task-action' id='halfDone'>&#189;</button>
-                            <button type="button" class='task-action' id='delete'>&#10006;</button>
-                        </div>
-                    </li>
+                        <li class='single-task' id='{{ loop.index }}' data-task-id='{{ task.id }}'>
+                            <div class="content">
+                                {% if task.status.name == 'Done' %}
+                                    <p><span class='done'>{{ task.task }}</span></p>
+                                {% elseif task.status.name == 'Half done' %}
+                                    <p><span class='halfDone'>{{ task.task }}</span></p>
+                                {% elseif task.status.name == 'Priority' %}
+                                    <p><span class='priority'>{{ task.task }}</span></p>
+                                {% elseif task.status.name == 'Query' %}
+                                    <p><span class='query'>{{ task.task }}</span></p>
+                                {% else %}
+                                    <p>{{ task.task }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="status">
+                                <small>{{ task.status.name }}</small>
+                            </div>
+                            <div class="task-actions">
+                                <button type="button" class='task-action' id='done'>&#10004;</button>
+                                <button type="button" class='task-action' id='halfDone'>&#189;</button>
+                                <button type="button" class='task-action' id='priority'><strong>!</strong></button>
+                                <button type="button" class='task-action' id='query'><strong>?</strong></button>
+                                <button type="button" class='task-action' id='delete'>&#10006;</button>
+                            </div>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
